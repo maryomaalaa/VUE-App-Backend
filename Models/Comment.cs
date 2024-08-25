@@ -11,6 +11,5 @@ namespace BackendProject.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

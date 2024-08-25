@@ -22,19 +22,28 @@ namespace BackendProject.Controllers
 
         // GET: api/Comments?postId=5
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComments(int postId)
+        [Route("api/comments")]
+        public IActionResult GetComments(int postId)
         {
-            return await _context.Comments.Where(c => c.PostId == postId).ToListAsync();
+            var comments = _context.Comments.Where(c => c.PostId == postId).ToList();
+            return Ok(comments); // Even if it's empty, this should return []
         }
 
         // POST: api/Comments
         [HttpPost]
-        public async Task<ActionResult<Comment>> PostComment(Comment comment)
+        [Route("api/comments")]
+        public IActionResult AddComment([FromBody] Comment comment)
         {
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
+            if (comment == null)
+            {
+                return BadRequest("Comment cannot be null");
+            }
 
-            return CreatedAtAction(nameof(GetComments), new { postId = comment.PostId }, comment);
+            _context.Comments.Add(comment);
+            _context.SaveChanges();
+
+            return Ok(comment);
         }
+
     }
 }

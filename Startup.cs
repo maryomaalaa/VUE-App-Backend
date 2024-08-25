@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using BackendProject.Data; // Replace with the correct namespace of AppDbContext
+using BackendProject.Data; 
 
 namespace BackendProject
 {
@@ -31,7 +31,7 @@ namespace BackendProject
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials(););
+                        .AllowCredentials());
             });
         }
 
