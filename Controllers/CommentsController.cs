@@ -22,7 +22,6 @@ namespace BackendProject.Controllers
 
         // GET: api/Comments?postId=5
         [HttpGet]
-        [Route("api/comments")]
         public IActionResult GetComments(int postId)
         {
             var comments = _context.Comments.Where(c => c.PostId == postId).ToList();
@@ -31,7 +30,6 @@ namespace BackendProject.Controllers
 
         // POST: api/Comments
         [HttpPost]
-        [Route("api/comments")]
         public IActionResult AddComment([FromBody] Comment comment)
         {
             if (comment == null)
